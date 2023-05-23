@@ -23,7 +23,7 @@ use App\Http\Controllers\BestellingController;
 
 Route::resource('/', BestellingController::class);
 
-Route::post('/join', [BestellingController::class, 'join'])->name('join');
+Route::get('/join', [BestellingController::class, 'join'])->name('join');
 Route::post('/total', [BestellingController::class, 'total'])->name('total');
 Route::post('/average', [BestellingController::class, 'average'])->name('average');
 Route::post('/popular', [BestellingController::class, 'popular'])->name('popular');

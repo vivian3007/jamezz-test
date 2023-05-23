@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BestellingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+//Route::get('/', [BestellingController::class, 'welcome'])->name('welcome');
+
+Route::resource('/', BestellingController::class);
+
+Route::post('/join', [BestellingController::class, 'join'])->name('join');
+Route::post('/total', [BestellingController::class, 'total'])->name('total');
+Route::post('/average', [BestellingController::class, 'average'])->name('average');
+Route::post('/popular', [BestellingController::class, 'popular'])->name('popular');

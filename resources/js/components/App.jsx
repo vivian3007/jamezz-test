@@ -7,11 +7,15 @@ import { HelloReact } from './HelloReact'
 
 
 export function App(){
-    return <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<HelloReact />} />
-            </Routes>
-        </BrowserRouter>
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<HelloReact />} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    )
 
 
 }

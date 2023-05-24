@@ -3,7 +3,10 @@
 // import {Popular} from './Popular'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Example from "./Example";
-import { HelloReact } from './HelloReact'
+import { HomePage } from './HomePage'
+import { Average } from './Average'
+import { Popular } from './Popular'
+import { Total } from "./Total";
 
 
 export function App(){

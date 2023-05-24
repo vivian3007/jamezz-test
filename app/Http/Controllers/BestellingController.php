@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BestellingItemTest;
 use App\Models\MetadataTest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class BestellingController extends Controller
@@ -16,10 +17,11 @@ class BestellingController extends Controller
     public function join(){
 //        return MetadataTest::all();
 
-        return BestellingItemTest::joinRelationship('metadata_tests');
+//        return BestellingItemTest::joinRelationship('metadata_tests');
 
-//        return BestellingItemTest::select('bestelling_item_tests.*')
-//            ->join('metadata_tests', 'metadata_tests.orderid', '=', 'bestelling_id');
+        return BestellingItemTest::select('bestelling_item_tests.*')
+            ->join('metadata_tests', 'metadata_tests.orderid', '=', 'bestelling_id')
+            ->get();
 
 
 //            ->join('metadata_test', 'bestelling_item_test.bestelling_id', '=', 'metadata_test.order_id')
@@ -45,14 +47,46 @@ class BestellingController extends Controller
     public function total(){
         //orderValue bij elkaar optellen per dag  created at
 
+        $orderValue = MetadataTest::select('orderValue')
+            ->get();
+
+        $orderValueArray = $orderValue->pluck('orderValue')->toArray();
+
+        $orderValueInt = array_map('intval', $orderValueArray);
+
+        $totalOrderValue = array_sum($orderValueInt);
+
+//        dd($totalOrderValue);
+
+
         //DB::orderwaarde -> where(created_at) --> array van orderwaarde per dag
-        //array_reduce($array, 'function') --> orderwaarde totaal per dag
+        //array_sum($array, 'function') --> orderwaarde totaal per dag
     }
 
     public function average(){
-        //array maken van orderwaarde
-        //array_reduce($array, 'function') --> orderwaarde totaal
 
+        $orderValue = MetadataTest::select('orderValue')
+            ->get();
+
+        $orderValueArray = $orderValue->pluck('orderValue')->toArray();
+
+        $orderValueInt = array_map('intval', $orderValueArray);
+
+        $totalOrderValue = array_sum($orderValueInt);
+
+        //        dd($totalOrderValue);
+
+
+        $dates = DB::table('metadata_tests')
+            ->whereBetween('created_at', ['2022-03-17', '2022-03-17 23:59:59'])
+            ->get();
+
+        dd($dates);
+
+
+//        $datesArray = $dates->toArray();
+
+//        $uniqueArray = array_unique($datesArray);
         //array_unique($array) van dates
         //array.length --> aantal dagen
 
@@ -61,6 +95,17 @@ class BestellingController extends Controller
 
     public function popular(){
         //aantal van hoog naar laag --> stoppen bij 10
+
+        $itemCount = MetadataTest::select('itemCount')
+            ->get();
+
+        $itemCountArray = $itemCount->pluck('itemCount')->toArray();
+
+        rsort($itemCountArray); // Sort the array in descending order
+
+        $popularArray = array_slice($itemCountArray, 0, 10);
+
+        dd($popularArray);
 
         //array maken van aantal
         //arsort van array

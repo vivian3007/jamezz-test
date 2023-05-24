@@ -14,7 +14,10 @@ export function App(){
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<HelloReact />} />
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/total" element={<Total array={typeof array !== "undefined" ? array : ''}/>} />
+                    <Route path="/average" element={<Average array={typeof array !== "undefined" ? array : ''}/>} />
+                    <Route path="/popular" element={<Popular array={typeof array !== "undefined" ? array : ''}/>} />
                 </Routes>
             </BrowserRouter>
         </>

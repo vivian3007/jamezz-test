@@ -63,11 +63,8 @@ class BestellingController extends Controller
                 ->get();
 
             $itemCountArray = $itemCount->pluck('itemCount')->toArray();
-
-            rsort($itemCountArray); // Sort the array in descending order
-
+            rsort($itemCountArray);
             $popularArray = array_slice($itemCountArray, 0, 10);
-
 
             return view('welcome', compact('popularArray'));
         }

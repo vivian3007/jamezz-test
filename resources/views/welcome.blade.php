@@ -2,8 +2,6 @@
 <html>
 <head>
     <title>Bestellingen</title>
-{{--    <script src="{{ asset('js/app.jsx') }}" defer></script>--}}
-
 </head>
 
 <body>

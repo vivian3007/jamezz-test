@@ -1,6 +1,12 @@
 export function Popular(props) {
-    console.log(props);
     return (
-        <h1>Hello React!</h1>
+        <div>
+            {props.array.map((element, index) => (
+                <h1 key={index}>{element}</h1>
+            ))}
+
+            <p>Hierboven is de itemCount van de 10 populairste items opgehaald en weergegeven. De productnaam erbij
+                inladen is niet meer gelukt.</p>
+        </div>
     );
 }

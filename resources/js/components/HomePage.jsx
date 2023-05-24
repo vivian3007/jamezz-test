@@ -1,5 +1,4 @@
 export function HomePage() {
-    console.log('helloreact')
     return (
         <div>
             <h1>Link naar URL/total om de totale bestelwaarde per dag te zien</h1>
